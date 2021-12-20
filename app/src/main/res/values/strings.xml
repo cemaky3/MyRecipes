@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application11</string>
+    <string name="RecipeView1_title" translatable="false">Французские тосты
+с клубникой</string>
+    <string name="hello_user" translatable="false">Здравствуйте, Анастасия</string>
+    <string name="home_title" translatable="false">Что будете готовить сегодня?</string>
+    <string name="start_searching" translatable="false">Начните поиск</string>
+    <string name="pop_recipes" translatable="false">Популярные рецпты</string>
+    <string name="more_btn" translatable="false">Ещё...</string>
+    <string name="blueb_muff" translatable="false">Черничные маффины</string>
+    <string name="salmon" translatable="false">Лосось в глазури</string>
+    <string name="search_btn">Поиск</string>
+    <string name="my_recipes_btn">Мои рецепты</string>
+    <string name="profile">Профиль</string>
+    <string name="ingridients" translatable="false">Ингредиенты</string>
+    <string name="rec_steps" translatable="false">Пошаговый рецепт</string>
+    <string name="step_1" translatable="false">Духовку разогреть до 200°. Палочку ванили разрезать
+ вдоль пополам и ножом соскребсти семена из обеих образованных половинок.</string>
+    <string name="step_3" translatable="false">Отдельно взбить яйцо с 10 г сах.пудры. Каждый кусочек обмакать в молоке,затем в яйце.
+        Поставить в духовку на 10 мин,затем перевернуть каждый кусочек и запекать еще 10 мин.</string>
+    <string name="step_2" translatable="false">Молоко,ваниль и 40 г сах.пудры довести до кипения,снять с огня,накрыть крышкой и дать настояться 20 мин.</string>
+    <string name="step_4" translatable="false">Перед подачей посыпать корицей и сах.пудрой,сверху положить порезанную клубнику.</string>
+    <string name="bon_appetit" translatable="false">Приятного аппетита</string>
+    <string name="back_btn" translatable="false">Вернуться</string>
+
+    <string name="next" translatable="false">некст</string>
+    <string name="textview" translatable="false">Main</string>
+</resources>
