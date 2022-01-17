@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/frying_pan_empty_assorted_spices_activity_background"
+    android:gravity="top"
+    tools:context=".RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="@string/daily_recipe_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="@string/reg_btn"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_field"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="@dimen/dim_btn"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="@dimen/dim_btn"
+        android:hint="@string/name"
+        android:textColorHint="@color/reg_ic_color"
+        app:boxBackgroundMode="none"
+        app:counterEnabled="true"
+        app:counterTextColor="@color/reg_ic_color"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:hintTextColor="@color/reg_ic_color"
+        app:startIconDrawable="@drawable/ic_baseline_how_to_reg_24"
+        app:startIconTint="@color/reg_ic_color"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:textColor="@color/dark_grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_field"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_field"
+        android:layout_marginStart="@dimen/dim_btn"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="@dimen/dim_btn"
+        android:hint="@string/email"
+        android:textColorHint="@color/reg_ic_color"
+        app:boxBackgroundMode="none"
+        app:boxStrokeColor="@color/reg_ic_color"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:hintTextColor="@color/reg_ic_color"
+        app:startIconDrawable="@drawable/ic_baseline_mail_outline_24"
+        app:startIconTint="@color/reg_ic_color"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/dark_grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_field"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email_field"
+        android:layout_marginStart="@dimen/dim_btn"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="@dimen/dim_btn"
+        android:hint="@string/password"
+        android:textColorHint="@color/reg_ic_color"
+        app:boxBackgroundMode="none"
+        app:boxStrokeColor="@color/reg_ic_color"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/reg_ic_color"
+        app:errorEnabled="true"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:hintTextColor="@color/reg_ic_color"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        app:startIconTint="@color/reg_ic_color">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:inputType="textPassword"
+            android:textColor="@color/dark_grey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/reg_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_field"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/dim_btn"
+        android:layout_marginTop="5sp"
+        android:backgroundTint="@color/orange"
+        android:text="@string/reg_btn"
+        android:textColor="@color/white"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+
+</RelativeLayout>

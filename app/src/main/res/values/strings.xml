@@ -25,4 +25,11 @@
 
     <string name="next" translatable="false">некст</string>
     <string name="textview" translatable="false">Main</string>
+    <string name="first_page_text">Cooking Done The Easy Way</string>
+    <string name="daily_recipe_txt">Daily recipe</string>
+    <string name="reg_btn">Регистрация</string>
+    <string name="login">Войти</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

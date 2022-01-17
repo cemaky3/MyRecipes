@@ -4,4 +4,11 @@
     <string name="search_btn">Search</string>
     <string name="my_recipes_btn">My recipes</string>
     <string name="profile">Profile</string>
+    <string name="first_page_text">Cooking Done The Easy Way</string>
+    <string name="daily_recipe_txt">Daily recipe</string>
+    <string name="reg_btn">Register</string>
+    <string name="login">Log in</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
