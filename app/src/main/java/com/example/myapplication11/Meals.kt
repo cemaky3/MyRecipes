@@ -4,5 +4,4 @@ enum class Meals {
     Breakfast,
     Lunch,
     Dinner
-
 }

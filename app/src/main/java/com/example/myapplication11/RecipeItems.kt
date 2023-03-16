@@ -1,5 +1,6 @@
 package com.example.myapplication11
 
-class RecipeItems(val name :String?, ) {
-
+enum class RecipeItems(val nameItem: String,val type: String) {
+    SALMON("Salmon","Seafood"),
+    EGG("Egg","Other")
 }

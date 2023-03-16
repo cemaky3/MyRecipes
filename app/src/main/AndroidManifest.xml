@@ -10,11 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication11">
         <activity
+            android:name=".FilterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
             android:exported="true"
