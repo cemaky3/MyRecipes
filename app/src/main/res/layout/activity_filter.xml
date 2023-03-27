@@ -4,6 +4,227 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="30dp"
+    android:paddingTop="30dp"
+    android:paddingEnd="30dp"
     tools:context=".FilterActivity">
+
+    <TextView
+        android:id="@+id/filter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_title"
+        android:textColor="@color/titles_dark"
+        android:textSize="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/clear_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Очистить"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+    <TextView
+        android:id="@+id/mealtime_chipgroup_filter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Прием пищи"
+        android:textColor="@color/titles_dark"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_title" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/mealtime_chipgroup_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealtime_chipgroup_filter_title">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breakfast_mealtime"
+            android:textSize="20dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lunch_mealtime"
+            android:textSize="20dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Dinner_mealtime"
+            android:textSize="20dp" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/dishes_chipgroup_filter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Прием пищи"
+        android:textColor="@color/titles_dark"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealtime_chipgroup_filter" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/dishes_chipgroup_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dishes_chipgroup_filter_title">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_soup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Супы"
+            android:textSize="20dp"
+            />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_salad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Салаты"
+            android:textSize="20dp" />
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Напитки"
+            android:textSize="20dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:id="@+id/chip_main_dish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Главное блюдо"
+            android:textSize="20dp" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/seekBar_portions_titile"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/dishes_chipgroup_filter"
+    android:text="Количество порций"
+    android:textColor="@color/titles_dark"
+    android:textSize="20dp"/>
+
+    <SeekBar
+        android:id="@+id/seekBar_portions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_portions_titile"
+        android:min="1"
+        android:max="10"
+        android:progress="5"
+        android:progressTint="@color/orange"
+        android:thumbTint="@color/orange"
+        />
+
+    <TextView
+        android:id="@+id/seekBar_portions_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_portions" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar_cookingtime_titile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_portions_number"
+        android:text="Время приготовления"
+        android:textColor="@color/titles_dark"
+        android:textSize="20dp"/>
+
+    <SeekBar
+        android:id="@+id/seekBar_cookingtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_cookingtime_titile"
+        android:min="10"
+        android:max="60"
+        android:progress="30"
+        android:progressTint="@color/orange"
+        android:thumbTint="@color/orange"
+        />
+
+    <TextView
+        android:id="@+id/seekBar_cookingtime_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_cookingtime" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar_calories_titile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_cookingtime_number"
+        android:text="Калории"
+        android:textColor="@color/titles_dark"
+        android:textSize="20dp"/>
+
+    <SeekBar
+        android:id="@+id/seekBar_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_calories_titile"        android:min="10"
+        android:max="1000"
+        android:progress="400"
+        android:progressTint="@color/orange"
+        android:thumbTint="@color/orange"
+        />
+
+    <TextView
+        android:id="@+id/seekBar_calories_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="400"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_calories" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

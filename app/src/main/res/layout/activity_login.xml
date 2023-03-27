@@ -61,6 +61,7 @@
         app:startIconTint="@color/reg_ic_color">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_field_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password" />
@@ -89,6 +90,7 @@
         app:startIconTint="@color/reg_ic_color"
         app:errorEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_field_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
@@ -107,7 +109,6 @@
         android:layout_below="@id/password_field"
         android:layout_centerInParent="true"
         android:layout_marginStart="@dimen/dim_btn"
-        android:layout_marginTop="5sp"
         android:layout_marginEnd="@dimen/dim_btn"
         android:backgroundTint="@color/orange"
         android:text="@string/login"
@@ -117,5 +118,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_field"
         tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/to_reg_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Еще не зарегистрированы? Регистрация "
+        android:textColor="@color/white_pale"
+        android:textColorLink="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

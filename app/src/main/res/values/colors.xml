@@ -11,6 +11,12 @@
     <color name="dark_grey">#999999</color>
     <color name="grey">#C4C4C4</color>
     <color name="reg_ic_color">#B2B7C6</color>
+    <color name="titles_dark">#1F222B</color>
+    <color name="title_grey">#B2B7C6</color>
+    <color name="light_grey">#E7E9F1</color>
+    <color name="blue_for_mealtimes">#128FAE</color>
+    <color name="white_pale">#F7F8FC</color>
+    <color name="chip_background">#E5E5E5</color>
 
 
 </resources>
