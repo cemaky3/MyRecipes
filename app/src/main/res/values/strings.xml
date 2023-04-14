@@ -36,6 +36,8 @@
     <string name="breakfast_mealtime" translatable="false">Завтрак</string>
     <string name="lunch_mealtime" translatable="false">Обед</string>
     <string name="Dinner_mealtime" translatable="false">Ужин</string>
-    <string name="main_title_text" tools:ignore="MissingTranslation" translatable="false">Что будете готовть сегодня?</string>
+    <string name="main_title_text" translatable="false" tools:ignore="MissingTranslation">Что будете готовть сегодня?</string>
     <string name="filter_title">Фильтр</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

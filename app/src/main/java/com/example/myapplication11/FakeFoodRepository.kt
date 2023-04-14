@@ -3,18 +3,21 @@ package com.example.myapplication11
 class FakeFoodRepository {
     val rec = getRecipes()
     fun getRecipes():List<Recipe>{
-        val frenchtoast = Recipe("Французские тосты", Meals.Breakfast,Dishes.MainDish,17,4,
+        val frenchtoast = Recipe(1,"Французские тосты", Meals.Breakfast,Dishes.MainDish,17,4,
             370,"370", rating = 2)
-        val muffins = Recipe("Маффины", Meals.Breakfast,Dishes.Dessert,30,2,
+        val muffins = Recipe(2,"Маффины", Meals.Breakfast,Dishes.Dessert,30,2,
             250,"370", rating = 1)
-        val salmon = Recipe("Лосось", Meals.Dinner,Dishes.MainDish,45,3,
+        val salmon = Recipe(3,"Лосось", Meals.Dinner,Dishes.MainDish,45,3,
             315,"370", rating = 3)
-        val pancakes = Recipe("Блинчики", Meals.Breakfast,Dishes.MainDish,15,2,
+        val pancakes = Recipe(4,"Блинчики", Meals.Breakfast,Dishes.MainDish,15,2,
             200,"370", rating = 5)
-        val spaghetti = Recipe("Спагетти", Meals.Lunch,Dishes.MainDish,25,2,
+        val spaghetti = Recipe(5,"Спагетти", Meals.Lunch,Dishes.MainDish,25,2,
             500,"370", rating = 5)
 
         return listOf<Recipe>(frenchtoast,muffins,salmon,pancakes,spaghetti)
+    }
+    fun getRecipeById(id: Int,listOfRecipes: List<Recipe>): Recipe {
+        return listOfRecipes.first { it.id == id }
     }
 
     fun ratingSort(list: List<Recipe>,descendingOrder: Boolean = true): List<Recipe> {
