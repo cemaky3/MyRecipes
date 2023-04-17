@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/main_title_text"
+        android:textColor="@color/titles_dark"
+        android:textSize="24sp" />
+    <ImageButton
+        android:id="@+id/filter_Button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:srcCompat="@drawable/ic_filter_main"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/round_style"
+        android:backgroundTint="@color/light_grey"
+        android:layout_marginEnd="10dp"
+        app:queryHint="Начните поиск"
+        app:defaultQueryHint="Начните поиск"
+        app:layout_constraintBottom_toBottomOf="@id/filter_Button"
+        app:layout_constraintEnd_toStartOf="@id/filter_Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/filter_Button" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

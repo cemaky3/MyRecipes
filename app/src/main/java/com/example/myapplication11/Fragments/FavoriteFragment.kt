@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication11.FakeFoodRepository
-import com.example.myapplication11.R
-import com.example.myapplication11.RecyclerView.RecipeAdapter
+import com.example.myapplication11.FavoriteFragmentRecyclerView.RecipeAdapter
 import com.example.myapplication11.databinding.FragmentFavoriteBinding
-import com.example.myapplication11.databinding.FragmentSearchBinding
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null

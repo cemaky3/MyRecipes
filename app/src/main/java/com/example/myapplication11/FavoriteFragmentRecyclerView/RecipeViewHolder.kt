@@ -1,4 +1,4 @@
-package com.example.myapplication11.RecyclerView
+package com.example.myapplication11.FavoriteFragmentRecyclerView
 
 import android.view.View
 import android.widget.CheckBox

@@ -1,4 +1,4 @@
-package com.example.myapplication11.RecyclerView
+package com.example.myapplication11.FavoriteFragmentRecyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
