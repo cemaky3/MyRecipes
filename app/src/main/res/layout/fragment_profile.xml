@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_fragment_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--&lt;!&ndash;    <com.google.android.material.textfield.TextInputLayout&ndash;&gt;-->
-<!--&lt;!&ndash;        android:id="@+id/text_input_search"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_width="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_height="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_marginEnd="10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/filter_Button"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintEnd_toStartOf="@+id/filter_Button"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:boxBackgroundMode="none">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <com.google.android.material.textfield.TextInputEditText&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:drawableStart="@drawable/ic_search"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:drawablePadding= "8dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:background="@drawable/round_style"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:backgroundTint="@color/light_grey"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:hint="Начните поиск"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textColorHint="@color/black"&ndash;&gt;-->
-<!--&lt;!&ndash;            tools:ignore="TouchTargetSizeCheck" />&ndash;&gt;-->
-<!--&lt;!&ndash;    </com.google.android.material.textfield.TextInputLayout>&ndash;&gt;-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/filter_Button"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:background="@color/white"-->
-<!--        android:scaleType="fitXY"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/ic_filter_main"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <SearchView-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:background="@drawable/round_style"-->
-<!--        android:backgroundTint="@color/light_grey"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        app:queryHint="Начните поиск"-->
-<!--        app:defaultQueryHint="Начните поиск"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/filter_Button"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

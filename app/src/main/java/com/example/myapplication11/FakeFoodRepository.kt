@@ -26,10 +26,16 @@ class FakeFoodRepository {
     fun categoryFilter(list: List<Recipe>, category: Meals): List<Recipe> {
         return list.filter { it.category == category}
     }
-    fun setCaloriesRange(list: List<Recipe>, calLow: Int, calHigh: Int): List<Recipe> {
+    fun dishFilter(list: List<Recipe>, dish: Dishes): List<Recipe> {
+        return list.filter { it.Dish == dish}
+    }
+    fun setCaloriesRange(list: List<Recipe>, calLow: Int = 0, calHigh: Int): List<Recipe> {
         return list.filter { it.calories in calLow..calHigh }
     }
-    fun setTimeRange(list: List<Recipe>, min: Int, max: Int): List<Recipe> {
+    fun setPortionsRange(list: List<Recipe>, min: Int = 0, max: Int): List<Recipe> {
+        return list.filter { it.portions in min..max }
+    }
+    fun setTimeRange(list: List<Recipe>, min: Int = 0, max: Int): List<Recipe> {
         return list.filter { it.time in min..max }
     }
 
