@@ -2,6 +2,7 @@ package com.example.myapplication11.FavoriteFragmentRecyclerView
 
 import android.view.View
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,4 +16,5 @@ class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
     val portions: TextView = v.findViewById(R.id.strawberry_card_portions)
     val favor: CheckBox = v.findViewById(R.id.strawberry_toast_card_isfavorite_checkbox)
     val rating: RatingBar = v.findViewById(R.id.ratingBar)
+    val image: ImageView = v.findViewById(R.id.recipe_image)
 }

@@ -9,7 +9,7 @@ sealed class DataModel {
                        val portions: Int,
                        val calories: Int,
                        val favorite: Boolean = false,
-                       val rating: Int = 0
+                       val rating: Double = 0.0
             ) : DataModel()
     data class Header(val header_text: String,
                       val more_btn_text: String

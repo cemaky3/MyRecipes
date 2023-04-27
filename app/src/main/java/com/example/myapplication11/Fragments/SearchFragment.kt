@@ -23,7 +23,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val repository = FakeFoodRepository()
-    private val recipes = repository.getRecipes()
+    private val recipes = FakeFoodRepository.getRecipes()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -73,7 +73,7 @@ class SearchFragment : Fragment() {
        return list.map { recipe ->
             DataModel.Recipe(
                 name = recipe.name,
-                category = recipe.category,
+                category = recipe.Mealtime,
                 time = recipe.time,
                 portions = recipe.portions,
                 calories = recipe.calories,
@@ -89,8 +89,7 @@ class SearchFragment : Fragment() {
     ): List<Recipe> {
         var result = list
 
-        filter.mealTime?.let { mealTime ->
-             result = rep.categoryFilter(list,mealTime) }
+        filter.mealTime?.let { result = rep.categoryFilter(list,it) }
         filter.dishes?.let { result = rep.dishFilter(result,it) }
         filter.calories?.let { result = rep.setCaloriesRange(result, calHigh = it) }
         filter.portions?.let { result = rep.setPortionsRange(result,max = it) }
