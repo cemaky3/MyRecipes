@@ -2,12 +2,14 @@ package com.example.myapplication11.SearchFragmentRecyclerView
 
 import android.view.View
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication11.R
+import com.squareup.picasso.Picasso
 
-class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
+class RecipeApiResponseViewHolder(v: View): RecyclerView.ViewHolder(v) {
     val mealtime: TextView = v.findViewById(R.id.strawberry_card_mealtime)
     val name: TextView = v.findViewById(R.id.card_mealtime_title)
     val calories: TextView = v.findViewById(R.id.strawberry_toast_card_calories)
@@ -15,8 +17,9 @@ class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
     val portions: TextView = v.findViewById(R.id.strawberry_card_portions)
     val favor: CheckBox = v.findViewById(R.id.strawberry_toast_card_isfavorite_checkbox)
     val rating: RatingBar = v.findViewById(R.id.ratingBar)
+    val image: ImageView = v.findViewById(R.id.recipe_image)
 
-    fun bind(currentItem: DataModel.Recipe) {
+    fun bind(currentItem: DataModel.RecipeResponse) {
         mealtime.text = currentItem.mealTime.toString()
         name.text = currentItem.name
         calories.text = currentItem.calories.toString() + " калорий"
@@ -24,5 +27,12 @@ class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
         portions.text = currentItem.portions.toString()
         favor.isChecked = currentItem.favorite
         rating.rating = currentItem.rating.toFloat()
+
+        Picasso.get()
+            .load(currentItem.url)
+            .fit()
+            .centerCrop()
+            .placeholder(R.drawable.ic_recipe_image_default)
+            .into(this.image)
     }
 }

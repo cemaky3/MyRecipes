@@ -40,7 +40,6 @@ class FavoriteFragment : Fragment() {
 
         val call = Builder.RecipeApiClient.apiClient.getRecipes()
 
-
         call.enqueue(object: Callback<List<RecipeApiResponse>> {
             override fun onResponse(
                 call: Call<List<RecipeApiResponse>>,

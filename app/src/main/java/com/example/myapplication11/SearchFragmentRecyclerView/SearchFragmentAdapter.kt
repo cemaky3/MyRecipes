@@ -23,6 +23,10 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.search_fragment_header_item, parent, false)
             HeaderViewHolder(view)
+        }else if (viewType == VIEW_TYPE_RESPONSE) {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.favorite_recipe_item, parent, false)
+            RecipeApiResponseViewHolder(view)
         } else {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.searchbar_and_filter_item, parent, false)
@@ -36,6 +40,9 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
         if ((currentItem is DataModel.Recipe) && (holder is RecipeViewHolder))  {
             holder.bind(currentItem)
         }
+        if ((currentItem is DataModel.RecipeResponse) && (holder is RecipeApiResponseViewHolder))  {
+            holder.bind(currentItem)
+        }
         if ((currentItem is DataModel.Header) && (holder is HeaderViewHolder))  {
             holder.bind(currentItem)
         }
@@ -47,6 +54,7 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
     override fun getItemViewType(position: Int): Int {
         return when(itemList[position]) {
             is DataModel.Recipe -> VIEW_TYPE_LIST
+            is DataModel.RecipeResponse -> VIEW_TYPE_RESPONSE
             is DataModel.Searchbar -> VIEW_TYPE_SEARCHBAR
             is DataModel.Header -> VIEW_TYPE_HEADER
         }
@@ -59,6 +67,7 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
         const val VIEW_TYPE_HEADER = 0
         const val VIEW_TYPE_SEARCHBAR = 1
         const val VIEW_TYPE_LIST = 2
+        const val VIEW_TYPE_RESPONSE = 3
     }
 
 }

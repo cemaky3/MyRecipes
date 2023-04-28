@@ -2,6 +2,7 @@ package com.example.myapplication11.SearchFragmentRecyclerView
 
 import android.view.View
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -14,7 +15,7 @@ import com.example.myapplication11.R
 class SearchbarViewHolder(v: View, val fragmentManager: FragmentManager): RecyclerView.ViewHolder(v) {
     val mainTitle: TextView = itemView.findViewById(R.id.main_title)
     val filterButton: ImageButton = itemView.findViewById(R.id.filter_Button)
-//    val searchView: SearchView = itemView.findViewById(R.id.search_view)
+    val searchView: SearchView = itemView.findViewById(R.id.search_view)
 
     fun bind(currentItem: DataModel.Searchbar) {
         mainTitle.text = currentItem.header_text
