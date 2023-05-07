@@ -3,7 +3,8 @@ package com.example.myapplication11.SearchFragmentRecyclerView
 import com.example.myapplication11.Meals
 
 sealed class DataModel {
-    data class Recipe (val name: String,
+    data class Recipe (val id: Int,
+                       val name: String,
                        val mealTime: Meals,
                        val time: Int,
                        val portions: Int,

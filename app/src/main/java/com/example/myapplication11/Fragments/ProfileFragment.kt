@@ -1,5 +1,6 @@
 package com.example.myapplication11.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -24,6 +25,11 @@ class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("fragment","reAttachedProfile")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

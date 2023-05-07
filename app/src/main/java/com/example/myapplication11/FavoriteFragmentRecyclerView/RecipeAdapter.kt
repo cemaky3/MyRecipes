@@ -1,14 +1,20 @@
 package com.example.myapplication11.FavoriteFragmentRecyclerView
 
+import android.app.Application
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.RoundedCorner
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication11.R
 import com.example.myapplication11.Recipe
+import com.example.myapplication11.Room.RecipeDB
+import com.example.myapplication11.Room.RecipeEntity
 import com.squareup.picasso.Picasso
 
-class RecipeAdapter(private val recipes: List<Recipe>
+class RecipeAdapter(private val recipes: List<RecipeEntity>
 ): RecyclerView.Adapter<RecipeViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -20,7 +26,7 @@ class RecipeAdapter(private val recipes: List<Recipe>
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val currentItem = recipes[position]
-        holder.mealtime.text = currentItem.Mealtime.toString()
+        holder.mealtime.text = currentItem.mealTime
         holder.name.text = currentItem.name
         holder.calories.text = currentItem.calories.toString() + " калорий"
         holder.time.text = currentItem.time.toString() + " мин"
@@ -28,12 +34,12 @@ class RecipeAdapter(private val recipes: List<Recipe>
         holder.favor.isChecked = currentItem.favorite
         holder.rating.rating = currentItem.rating.toFloat()
 
-        Picasso.get()
-            .load(currentItem.url)
-            .fit()
-            .centerCrop()
-            .placeholder(R.drawable.ic_recipe_image_default)
-            .into(holder.image)
+//        Picasso.get()
+//            .load(currentItem.url)
+//            .fit()
+//            .centerCrop()
+//            .placeholder(R.drawable.ic_recipe_image_default)
+//            .into(holder.image)
     }
 
     override fun getItemCount(): Int {

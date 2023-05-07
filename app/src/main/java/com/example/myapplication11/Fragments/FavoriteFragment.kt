@@ -1,11 +1,13 @@
 package com.example.myapplication11.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication11.Dishes
 import com.example.myapplication11.FakeFoodRepository
@@ -14,6 +16,9 @@ import com.example.myapplication11.Recipe
 import com.example.myapplication11.Retrofit.Builder
 import com.example.myapplication11.Retrofit.RecipeApiInterface
 import com.example.myapplication11.Retrofit.RecipeApiResponse
+import com.example.myapplication11.Room.LocalRecipeStorageDAO
+import com.example.myapplication11.Room.RecipeDB
+import com.example.myapplication11.Room.RecipeEntity
 import com.example.myapplication11.SearchFragmentRecyclerView.DataModel
 import com.example.myapplication11.databinding.FragmentFavoriteBinding
 import retrofit2.Call
@@ -26,41 +31,47 @@ class FavoriteFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private lateinit var recipeDB: RecipeDB
+    private lateinit var dao: LocalRecipeStorageDAO
+    private lateinit var recipeList: MutableList<RecipeEntity>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("fragment","reAttachedFav")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        recipeDB = RecipeDB.getInstance(requireContext())!!
+        dao = recipeDB.Recipes()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoriteBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = binding.favoriteRecipesRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val recipes = mutableListOf<Recipe>()
-        val adapter = RecipeAdapter(recipes)
+        recipeList = mutableListOf()
+
+        val adapter = RecipeAdapter(recipeList)
         recyclerView.adapter = adapter
 
-        val call = Builder.RecipeApiClient.apiClient.getRecipes()
 
-        call.enqueue(object: Callback<List<RecipeApiResponse>> {
-            override fun onResponse(
-                call: Call<List<RecipeApiResponse>>,
-                response: Response<List<RecipeApiResponse>>
-            ) {
-                val response = response.body()!![0].recipes
-                Log.d("Retrofit","Success")
+        dao.addAll().observe(viewLifecycleOwner, Observer {
+            recipeList.clear()
+            recipeList.addAll(it)
+            adapter.notifyDataSetChanged()
+            Log.d("Live","Success")})
 
-                recipes.clear()
-                recipes.addAll(listRecipeResponseToRecipe(response))
-                adapter.notifyDataSetChanged()
-
-            }
-
-            override fun onFailure(call: Call<List<RecipeApiResponse>>, t: Throwable) {
-                Log.e("Retrofit",toString())
-            }
-        }
-        )
-
-        return binding.root
     }
 
     private fun listRecipeResponseToRecipe(list: List<com.example.myapplication11.Retrofit.Recipe>): List<Recipe> {

@@ -13,7 +13,10 @@ import com.example.myapplication11.R
 import com.example.myapplication11.Recipe
 import com.example.myapplication11.Retrofit.Builder
 import com.example.myapplication11.Retrofit.RecipeApiResponse
+import com.example.myapplication11.Room.RecipeEntity
+import com.example.myapplication11.Room.RoomFavoriteRecipesRepository
 import com.example.myapplication11.SearchFragmentRecyclerView.DataModel
+import com.example.myapplication11.SearchFragmentRecyclerView.OnCheckedChangeListener
 import com.example.myapplication11.SearchFragmentRecyclerView.SearchFragmentAdapter
 import com.example.myapplication11.databinding.FragmentSearchBinding
 import retrofit2.Call
@@ -21,7 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(),OnCheckedChangeListener {
 
     private var _binding: FragmentSearchBinding? = null
 
@@ -30,9 +33,10 @@ class SearchFragment : Fragment() {
     private val repository = FakeFoodRepository()
     private val localRecipes = FakeFoodRepository.getRecipes()
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d("search","reAttached")
+        Log.d("fragment","reAttachedSearch")
     }
 
     override fun onCreateView(
@@ -56,7 +60,7 @@ class SearchFragment : Fragment() {
                 addAll(dataModels)
             }
 
-            val adapter = SearchFragmentAdapter(itemList,childFragmentManager)
+            val adapter = SearchFragmentAdapter(itemList,childFragmentManager,this)
             recyclerView.adapter = adapter
 
             val call = Builder.RecipeApiClient.apiClient.getRecipes()
@@ -92,8 +96,8 @@ class SearchFragment : Fragment() {
             val itemList = mutableListOf<DataModel>()
 
             itemList.addAll(dataModels)
-
-            recyclerView.adapter = SearchFragmentAdapter(itemList,childFragmentManager)
+            val adapter = SearchFragmentAdapter(itemList,childFragmentManager,this)
+            recyclerView.adapter = adapter
         }
 
 
@@ -103,6 +107,7 @@ class SearchFragment : Fragment() {
     private fun listRecipeToDataModelRecipe(list: List<Recipe>): List<DataModel.Recipe> {
        return list.map { recipe ->
             DataModel.Recipe(
+                id = recipe.id,
                 name = recipe.name,
                 mealTime = recipe.Mealtime,
                 time = recipe.time,
@@ -158,5 +163,30 @@ class SearchFragment : Fragment() {
 
         return result
     }
+
+    override fun onCheckedChanged(position: Int, isChecked: Boolean) {
+        val adapter = binding.searchFragmentRecyclerView.adapter as SearchFragmentAdapter
+        val item = adapter.getItem(position) as DataModel.Recipe
+        val dbEntity = RecipeEntity(
+            id = item.id,
+            name = item.name,
+            mealTime = item.mealTime.name,
+            time = item.time,
+            portions = item.portions,
+            calories = item.calories,
+            favorite = isChecked,
+            rating = item.rating,
+        )
+        val favRecipesDB = RoomFavoriteRecipesRepository(requireContext())
+        if (isChecked) {
+            favRecipesDB.insertOrUpdate(dbEntity)
+            Log.d("Checkbox","Checkbox ${item.name} set $isChecked")
+        } else {
+            favRecipesDB.removeFavoriteRecipe(dbEntity)
+            Log.d("Checkbox","Checkbox ${item.name} set $isChecked")
+        }
+
+    }
+
 
 }

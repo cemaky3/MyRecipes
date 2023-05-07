@@ -8,7 +8,8 @@ import com.example.myapplication11.R
 
 
 class SearchFragmentAdapter(private val itemList: List<DataModel>,
-                            val fragmentManager: FragmentManager
+                            private val fragmentManager: FragmentManager,
+                            private val listener: OnCheckedChangeListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -38,7 +39,10 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
         val currentItem = itemList[position]
 
         if ((currentItem is DataModel.Recipe) && (holder is RecipeViewHolder))  {
-            holder.bind(currentItem)
+            holder.bind(currentItem,listener)
+            holder.favor.setOnCheckedChangeListener { _, isChecked ->
+                listener.onCheckedChanged(position,isChecked)
+            }
         }
         if ((currentItem is DataModel.RecipeResponse) && (holder is RecipeApiResponseViewHolder))  {
             holder.bind(currentItem)
@@ -63,11 +67,13 @@ class SearchFragmentAdapter(private val itemList: List<DataModel>,
     override fun getItemCount(): Int {
         return itemList.size
     }
+    fun getItem(position: Int): DataModel {
+        return itemList[position]
+    }
     companion object {
         const val VIEW_TYPE_HEADER = 0
         const val VIEW_TYPE_SEARCHBAR = 1
         const val VIEW_TYPE_LIST = 2
         const val VIEW_TYPE_RESPONSE = 3
     }
-
 }

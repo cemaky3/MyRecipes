@@ -93,9 +93,9 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             bundle.putSerializable("FilterData", result)
             fragment.arguments = bundle
 
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_home_container, fragment)
-                .commit()
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_home_container, fragment)
+//                .commit()
         }
 
         return binding.root
