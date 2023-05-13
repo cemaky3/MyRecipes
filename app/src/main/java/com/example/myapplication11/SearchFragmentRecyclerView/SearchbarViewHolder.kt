@@ -1,5 +1,6 @@
 package com.example.myapplication11.SearchFragmentRecyclerView
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.SearchView
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication11.Fragments.BottomSheetDialog
 import com.example.myapplication11.Fragments.SearchFragment
 import com.example.myapplication11.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class SearchbarViewHolder(v: View, val fragmentManager: FragmentManager): RecyclerView.ViewHolder(v) {
     val mainTitle: TextView = itemView.findViewById(R.id.main_title)
@@ -20,10 +22,10 @@ class SearchbarViewHolder(v: View, val fragmentManager: FragmentManager): Recycl
     fun bind(currentItem: DataModel.Searchbar) {
         mainTitle.text = currentItem.header_text
         filterButton.setOnClickListener {
-
             val filterBottomSheetDialog : BottomSheetDialog = BottomSheetDialog.newInstance()
-            filterBottomSheetDialog.show(fragmentManager,
-            "add_filter_dialog_fragment")
+            filterBottomSheetDialog.show(fragmentManager.beginTransaction().addToBackStack("a"),
+                "add_filter_dialog_fragment")
+
         }
     }
 }

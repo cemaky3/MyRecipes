@@ -1,27 +1,22 @@
 package com.example.myapplication11.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication11.FakeFoodRepository
 import com.example.myapplication11.R
 import com.example.myapplication11.Recipe
-import com.example.myapplication11.Retrofit.Builder
-import com.example.myapplication11.Retrofit.RecipeApiResponse
-import com.example.myapplication11.Room.RecipeEntity
-import com.example.myapplication11.Room.RoomFavoriteRecipesRepository
 import com.example.myapplication11.SearchFragmentRecyclerView.DataModel
 import com.example.myapplication11.SearchFragmentRecyclerView.OnCheckedChangeListener
 import com.example.myapplication11.SearchFragmentRecyclerView.SearchFragmentAdapter
 import com.example.myapplication11.databinding.FragmentSearchBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SearchFragment : Fragment(),OnCheckedChangeListener {
@@ -32,59 +27,55 @@ class SearchFragment : Fragment(),OnCheckedChangeListener {
 
     private val repository = FakeFoodRepository()
     private val localRecipes = FakeFoodRepository.getRecipes()
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("fragment","reAttachedSearch")
-    }
+    private lateinit var viewModel: SearchFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = binding.searchFragmentRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        viewModel = ViewModelProvider(this).get(SearchFragmentViewModel::class.java)
+
+
         if (this.arguments == null) {
-
-            val dataModels = listRecipeToDataModelRecipe(localRecipes)
             val itemList = mutableListOf<DataModel>()
-
             itemList.apply {
                 add(DataModel.Searchbar(getString(R.string.main_title_text)))
                 add(DataModel.Header(getString(R.string.pop_recipes),getString(R.string.more_btn)))
-                add(DataModel.Header("Рекомендуем",getString(R.string.more_btn)))
-                addAll(dataModels)
+                add(DataModel.Header(getString(R.string.header_recommended),getString(R.string.more_btn)))
             }
-
             val adapter = SearchFragmentAdapter(itemList,childFragmentManager,this)
             recyclerView.adapter = adapter
 
-            val call = Builder.RecipeApiClient.apiClient.getRecipes()
-
-            call.enqueue(object: Callback<List<RecipeApiResponse>> {
-                override fun onResponse(
-                    call: Call<List<RecipeApiResponse>>,
-                    response: Response<List<RecipeApiResponse>>
-                ) {
-                    val response = response.body()!![0].recipes
-                    Log.d("Retrofit","Success")
-
-                    val respData = listRecipeToDataModelRecipeResponse(listRecipeResponseToRecipe(response))
-
-                    itemList.addAll(2,respData)
+            viewModel.localRecipesLD.observe(viewLifecycleOwner, Observer {
+                itemList.addAll(it)
+                adapter.notifyDataSetChanged()
+            })
+            viewModel.apiResponseListLD.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    itemList.addAll(2,it)
                     adapter.notifyDataSetChanged()
-                    Log.d("Retrofit","notify")
+                    Log.d("Retrofit","adapter")
                 }
+            })
+            viewModel.errorResponseLD.observe(viewLifecycleOwner,Observer{
+                Toast.makeText(requireContext(),it,Toast.LENGTH_LONG).show()
+            })
+            viewModel.filteredRecipeListLD.observe(viewLifecycleOwner,Observer{
+                itemList.clear()
+                itemList.add(DataModel.Searchbar(getString(R.string.main_title_text)))
+                itemList.addAll(it)
+                adapter.notifyDataSetChanged()
+            })
 
-                override fun onFailure(call: Call<List<RecipeApiResponse>>, t: Throwable) {
-                    Log.e("Retrofit",toString())
-                }
-            }
-            )
         } else {
             val args = this.arguments
             val filter = args?.get("FilterData")
@@ -100,9 +91,6 @@ class SearchFragment : Fragment(),OnCheckedChangeListener {
             recyclerView.adapter = adapter
         }
 
-
-
-        return binding.root
     }
     private fun listRecipeToDataModelRecipe(list: List<Recipe>): List<DataModel.Recipe> {
        return list.map { recipe ->
@@ -114,40 +102,12 @@ class SearchFragment : Fragment(),OnCheckedChangeListener {
                 portions = recipe.portions,
                 calories = recipe.calories,
                 favorite = recipe.favorite,
-                rating = recipe.rating
-            )
-        }
-    }
-    private fun listRecipeToDataModelRecipeResponse(list: List<Recipe>): List<DataModel.RecipeResponse> {
-       return list.map { recipe ->
-            DataModel.RecipeResponse(
-                name = recipe.name,
-                mealTime = recipe.Mealtime,
-                time = recipe.time,
-                portions = recipe.portions,
-                calories = recipe.calories,
-                favorite = recipe.favorite,
                 rating = recipe.rating,
-                url = recipe.url
+                dishes = recipe.Dish
             )
         }
     }
-    private fun listRecipeResponseToRecipe(list: List<com.example.myapplication11.Retrofit.Recipe>): List<Recipe> {
-        return list.map { recipe ->
-            Recipe(
-                name = recipe.title,
-                Mealtime = recipe.mealType,
-                Dish = recipe.dishType,
-                time = recipe.timeToCook/60,
-                portions = recipe.portions,
-                calories = recipe.calories,
-                favorite = recipe.isFavorite,
-                rating = recipe.rating,
-                id = recipe.id,
-                url = recipe.imageURL,
-            )
-        }
-    }
+
     private fun filterListOfRecipes(
         filter: BottomSheetDialog.FilterDataHolder,
         list: List<Recipe>,
@@ -167,26 +127,6 @@ class SearchFragment : Fragment(),OnCheckedChangeListener {
     override fun onCheckedChanged(position: Int, isChecked: Boolean) {
         val adapter = binding.searchFragmentRecyclerView.adapter as SearchFragmentAdapter
         val item = adapter.getItem(position) as DataModel.Recipe
-        val dbEntity = RecipeEntity(
-            id = item.id,
-            name = item.name,
-            mealTime = item.mealTime.name,
-            time = item.time,
-            portions = item.portions,
-            calories = item.calories,
-            favorite = isChecked,
-            rating = item.rating,
-        )
-        val favRecipesDB = RoomFavoriteRecipesRepository(requireContext())
-        if (isChecked) {
-            favRecipesDB.insertOrUpdate(dbEntity)
-            Log.d("Checkbox","Checkbox ${item.name} set $isChecked")
-        } else {
-            favRecipesDB.removeFavoriteRecipe(dbEntity)
-            Log.d("Checkbox","Checkbox ${item.name} set $isChecked")
-        }
-
+        viewModel.onCheckedChanged(isChecked,item)
     }
-
-
 }

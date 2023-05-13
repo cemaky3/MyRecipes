@@ -38,6 +38,9 @@
         app:layout_constraintEnd_toStartOf="@id/filter_Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/filter_Button" />
-
+    <Space
+        app:layout_constraintTop_toBottomOf="@id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

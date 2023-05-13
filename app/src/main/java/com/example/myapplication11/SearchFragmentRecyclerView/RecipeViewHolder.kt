@@ -27,13 +27,5 @@ class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
         portions.text = currentItem.portions.toString()
         favor.isChecked = currentItem.favorite
         rating.rating = currentItem.rating.toFloat()
-
-//        favor.setOnCheckedChangeListener { _, isChecked ->
-//            if (isChecked) {
-//                Log.d("Checkbox","Checkbox ${currentItem.name} set true")
-//            } else {
-//                Log.d("Checkbox","Checkbox ${currentItem.name} set false")
-//            }
-//        }
     }
 }

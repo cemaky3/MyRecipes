@@ -1,11 +1,13 @@
 package com.example.myapplication11.Retrofit
 
+import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Builder {
+    @SuppressLint("SuspiciousIndentation")
     object RecipeApiClient {
 
         private const val BASE_URL = "https://61e46d241a976f00176ee4a1.mockapi.io/api/v1/"

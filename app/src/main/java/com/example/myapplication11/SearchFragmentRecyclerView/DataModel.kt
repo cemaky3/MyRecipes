@@ -1,5 +1,6 @@
 package com.example.myapplication11.SearchFragmentRecyclerView
 
+import com.example.myapplication11.Dishes
 import com.example.myapplication11.Meals
 
 sealed class DataModel {
@@ -10,7 +11,8 @@ sealed class DataModel {
                        val portions: Int,
                        val calories: Int,
                        val favorite: Boolean = false,
-                       val rating: Double = 0.0
+                       val rating: Double = 0.0,
+                       val dishes: Dishes
             ) : DataModel()
     data class RecipeResponse (val name: String,
                        val mealTime: Meals,

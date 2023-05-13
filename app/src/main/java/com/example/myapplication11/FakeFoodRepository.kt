@@ -6,8 +6,6 @@ class FakeFoodRepository {
     init {
         Log.d("RepCreation","Repository created")
     }
-
-
     fun getRecipeById(id: Int,listOfRecipes: List<Recipe>): Recipe {
         return listOfRecipes.first { it.id == id }
     }
