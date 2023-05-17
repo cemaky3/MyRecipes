@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication11.FakeFoodRepository
 import com.example.myapplication11.Recipe
 import com.example.myapplication11.Retrofit.Builder
@@ -11,9 +12,12 @@ import com.example.myapplication11.Retrofit.RecipeApiResponse
 import com.example.myapplication11.Room.RecipeEntity
 import com.example.myapplication11.Room.RoomFavoriteRecipesRepository
 import com.example.myapplication11.SearchFragmentRecyclerView.DataModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.awaitResponse
 
 class SearchFragmentViewModel(private val application: Application): AndroidViewModel(application) {
     private val repository = FakeFoodRepository()
@@ -30,25 +34,15 @@ class SearchFragmentViewModel(private val application: Application): AndroidView
         localRecipesLD.value = listRecipeToDataModelRecipe(localRecipes)
     }
     private fun getRecipesFromResponse() {
-        val call = Builder.RecipeApiClient.apiClient.getRecipes()
-
-        call.enqueue(object: Callback<List<RecipeApiResponse>> {
-            override fun onResponse(
-                call: Call<List<RecipeApiResponse>>,
-                response: Response<List<RecipeApiResponse>>
-            ) {
-                val response = response.body()!![0].recipes
-                Log.d("Retrofit","Success")
-                val respData = listRecipeToDataModelRecipeResponse(listRecipeResponseToRecipe(response))
-                apiResponseListLD.value = respData
-            }
-
-            override fun onFailure(call: Call<List<RecipeApiResponse>>, t: Throwable) {
-                errorResponseLD.value = t.message
-                Log.e("Retrofit",toString())
-            }
+        viewModelScope.launch {
+          try {
+              val response = Builder.RecipeApiClient.apiClient.getRecipes()[0].recipes
+              val respData = listRecipeToDataModelRecipeResponse(listRecipeResponseToRecipe(response))
+              apiResponseListLD.value = respData
+          }  catch (e: Exception) {
+              errorResponseLD.value = e.message
+          }
         }
-        )
     }
     fun setFiltered(filter: BottomSheetDialog.FilterDataHolder) {
 

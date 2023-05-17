@@ -23,7 +23,7 @@ class SearchbarViewHolder(v: View, val fragmentManager: FragmentManager): Recycl
         mainTitle.text = currentItem.header_text
         filterButton.setOnClickListener {
             val filterBottomSheetDialog : BottomSheetDialog = BottomSheetDialog.newInstance()
-            filterBottomSheetDialog.show(fragmentManager.beginTransaction().addToBackStack("a"),
+            filterBottomSheetDialog.show(fragmentManager,
                 "add_filter_dialog_fragment")
 
         }
