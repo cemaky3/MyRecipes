@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/search"
+        android:title="Поиск"
+        android:icon="@drawable/ic_search_bottom"/>
+    <item
+        android:id="@+id/favorites"
+        android:title="Избранное"
+        android:icon="@drawable/ic_bottom_like"/>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Профиль"
+        android:icon="@drawable/ic_bottom_profile"/>
+</menu>

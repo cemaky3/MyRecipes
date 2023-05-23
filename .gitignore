@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/java/com/example/myapplication11/Test.kt
+/app/src/main/res/layout/old_search_fragment.xml
