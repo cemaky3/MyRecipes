@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication11.R
 import com.squareup.picasso.Picasso
 
-class RecipeApiResponseViewHolder(v: View): RecyclerView.ViewHolder(v) {
+class RecipeApiResponseViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     val mealtime: TextView = v.findViewById(R.id.strawberry_card_mealtime)
     val name: TextView = v.findViewById(R.id.card_mealtime_title)
     val calories: TextView = v.findViewById(R.id.strawberry_toast_card_calories)

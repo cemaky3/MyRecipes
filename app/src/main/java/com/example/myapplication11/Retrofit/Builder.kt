@@ -19,11 +19,11 @@ class Builder {
             .build()
 
         val apiClient: RecipeApiInterface by lazy {
-         val retrofit = Retrofit.Builder()
-             .baseUrl(BASE_URL)
-             .client(client)
-             .addConverterFactory(GsonConverterFactory.create())
-             .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
             return@lazy retrofit.create(RecipeApiInterface::class.java)
         }

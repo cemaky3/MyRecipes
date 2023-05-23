@@ -9,7 +9,7 @@ import com.example.myapplication11.R
 interface OnCheckedChangeListener {
     fun onCheckedChanged(position: Int, isChecked: Boolean)
 }
-class RecipeViewHolder(v: View): RecyclerView.ViewHolder(v) {
+class RecipeViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
     val mealtime: TextView = v.findViewById(R.id.strawberry_card_mealtime)
     val name: TextView = v.findViewById(R.id.card_mealtime_title)

@@ -1,7 +1,7 @@
 package com.example.myapplication11
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication11.databinding.ActivityRecipeDetailsBinding
 
 class RecipeDetails : AppCompatActivity() {
@@ -13,16 +13,15 @@ class RecipeDetails : AppCompatActivity() {
         binding = ActivityRecipeDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //var id = intent.extras?.get("RecipeID").toString().toInt() ?: 1
-        var id = intent.extras?.let { it.get("RecipeID").toString().toInt() } ?: 1
+        val id = intent.extras?.let { it.get("RecipeID").toString().toInt() } ?: 1
 
-        val recipe = FakeFoodRepository().getRecipeById(id,FakeFoodRepository.getRecipes())
-
-        binding.mealtimeTitle.text = recipe.Mealtime.toString()
-        binding.recipeName.text = recipe.name
-        binding.ratingBar.rating = recipe.rating.toFloat()
-        binding.cookingTime.text = "${recipe.time.toString()} мин"
-        binding.calories.text = recipe.calories.toString()
-
+        val recipe = FakeFoodRepository().getRecipeById(id, FakeFoodRepository.getRecipes())
+        binding.apply {
+            mealtimeTitle.text = recipe.Mealtime.toString()
+            recipeName.text = recipe.name
+            ratingBar.rating = recipe.rating.toFloat()
+            cookingTime.text = "${recipe.time} мин"
+            calories.text = recipe.calories.toString()
+        }
     }
 }

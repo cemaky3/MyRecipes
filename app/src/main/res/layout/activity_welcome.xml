@@ -10,23 +10,24 @@
     android:orientation="vertical"
     tools:context=".WelcomeActivity"
     >
-
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
+        android:id="@+id/textView_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/daily_recipe_txt"
-        app:srcCompat="@drawable/image_welcomeactivity_title" />
+        android:text="@string/daily_recipe_txt"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"/>
+
 
     <TextView
         android:id="@+id/title_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/first_page_text"
         android:textAlignment="center"
-        android:textColor="#B2B7C6"
-        android:textSize="14sp" />
+        android:textColor="@color/title_grey"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/reg_btn"

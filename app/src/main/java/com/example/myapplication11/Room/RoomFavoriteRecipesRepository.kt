@@ -1,9 +1,9 @@
-package com.example.myapplication11.Room;
+package com.example.myapplication11.Room
 
-import android.content.Context;
+import android.content.Context
 import androidx.lifecycle.LiveData
 
-class RoomFavoriteRecipesRepository(context: Context): FavoriteRecipesRepository {
+class RoomFavoriteRecipesRepository(context: Context) : FavoriteRecipesRepository {
 
     var localRecipeStorage: LocalRecipeStorageDAO = RecipeDB.getInstance(context)?.Recipes()!!
 
@@ -26,5 +26,4 @@ class RoomFavoriteRecipesRepository(context: Context): FavoriteRecipesRepository
     override fun updateFavoriteRecipe(recipe: RecipeEntity) {
         localRecipeStorage.update(recipe)
     }
-
 }

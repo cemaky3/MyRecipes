@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [RecipeEntity::class], version = 1)
-abstract class RecipeDB: RoomDatabase() {
+abstract class RecipeDB : RoomDatabase() {
 
     abstract fun Recipes(): LocalRecipeStorageDAO
 
@@ -16,8 +16,10 @@ abstract class RecipeDB: RoomDatabase() {
         fun getInstance(context: Context): RecipeDB? {
             if (INSTANCE == null) {
                 synchronized(RecipeDB::class) {
-                    INSTANCE = Room.inMemoryDatabaseBuilder(context.applicationContext,
-                        RecipeDB::class.java).allowMainThreadQueries()
+                    INSTANCE = Room.inMemoryDatabaseBuilder(
+                        context.applicationContext,
+                        RecipeDB::class.java
+                    ).allowMainThreadQueries()
                         .build()
                 }
             }

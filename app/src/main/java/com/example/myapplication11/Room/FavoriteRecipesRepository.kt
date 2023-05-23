@@ -8,5 +8,4 @@ interface FavoriteRecipesRepository {
     fun insertOrUpdate(recipe: RecipeEntity)
     fun removeFavoriteRecipe(recipe: RecipeEntity)
     fun updateFavoriteRecipe(recipe: RecipeEntity)
-
 }

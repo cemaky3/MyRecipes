@@ -7,8 +7,7 @@
     android:paddingStart="30dp"
     android:paddingTop="30dp"
     android:paddingEnd="30dp"
-    style="@style/CustomBottomSheetDialog"
-    tools:context=".FilterActivity">
+    style="@style/CustomBottomSheetDialog">
 
     <TextView
         android:id="@+id/filter_title"

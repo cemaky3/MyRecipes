@@ -1,18 +1,14 @@
 package com.example.myapplication11
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication11.databinding.ActivityLoginBinding
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import timber.log.Timber
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -36,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
         }
-        spannableString.setSpan(clickableSpan.underlying,25,36, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(clickableSpan.underlying, 25, 36, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.toRegActivity.text = spannableString
         binding.toRegActivity.movementMethod = LinkMovementMethod.getInstance()
     }
-    }
+}

@@ -1,49 +1,45 @@
 package com.example.myapplication11.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication11.Dishes
 import com.example.myapplication11.Meals
 import com.example.myapplication11.R
-import com.example.myapplication11.Recipe
-import com.example.myapplication11.SearchFragmentRecyclerView.DataModel
 import com.example.myapplication11.databinding.FragmentBottomSheetDialogBinding
-import com.example.myapplication11.databinding.FragmentSearchBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.Serializable
 
 class BottomSheetDialog : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentBottomSheetDialogBinding?  = null
+    private var _binding: FragmentBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var stateHolder: StateHolder
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBottomSheetDialogBinding.inflate(inflater,container,false)
+        _binding = FragmentBottomSheetDialogBinding.inflate(inflater, container, false)
 
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProvider(requireParentFragment()).get(SearchFragmentViewModel::class.java)
+        val viewModel = ViewModelProvider(requireParentFragment()).get(
+            SearchFragmentViewModel::class.java
+        )
 
         val result = FilterDataHolder()
         stateHolder = StateHolder()
         binding.mealtimeChipgroupFilter.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId) {
+            when (checkedId) {
                 R.id.chip_breakfast -> {
                     result.mealTime = Meals.Breakfast
                     stateHolder.selectedMealTimeChipId = R.id.chip_breakfast
@@ -59,42 +55,42 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             }
         }
         binding.dishesChipgroupFilter.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId) {
+            when (checkedId) {
                 R.id.chip_soup -> {
                     result.dishes = Dishes.Soup
                     stateHolder.selectedDishesChipId = R.id.chip_soup
                 }
                 R.id.chip_salad -> result.dishes = Dishes.Salad
                 R.id.chip_drinks -> result.dishes = Dishes.Drinks
-                R.id.chip_main_dish-> result.dishes = Dishes.MainDish
+                R.id.chip_main_dish -> result.dishes = Dishes.MainDish
             }
         }
 
-        binding.seekBarCalories.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        binding.seekBarCalories.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.seekBarCaloriesNumber.text = seekBar?.progress.toString()
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {    }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) { }
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 result.calories = seekBar?.progress
                 stateHolder.selectedCalories = seekBar?.progress
             }
         })
-        binding.seekBarPortions.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        binding.seekBarPortions.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.seekBarPortionsNumber.text = seekBar?.progress.toString()
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {    }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) { }
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 result.portions = seekBar?.progress
                 stateHolder.selectedPortions = seekBar?.progress
             }
         })
-        binding.seekBarCookingtime.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        binding.seekBarCookingtime.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.seekBarCookingtimeNumber.text = seekBar?.progress.toString()
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {    }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) { }
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 result.time = seekBar?.progress
                 stateHolder.selectedTime = seekBar?.progress
@@ -114,7 +110,9 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             binding.seekBarPortionsNumber.text = ""
             binding.seekBarCookingtime.progress = 0
             binding.seekBarCookingtimeNumber.text = ""
-            result.apply { mealTime = null; dishes = null; calories = null; portions = null; time = null }
+            result.apply {
+                mealTime = null; dishes = null; calories = null; portions = null; time = null
+            }
         }
     }
 
@@ -134,7 +132,6 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             stateHolder = restoredStateHolder
             restoreState(restoredStateHolder)
         }
-        Log.d("StateStat","Restore")
     }
     companion object {
         fun newInstance(): BottomSheetDialog {
@@ -154,7 +151,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         var calories: Int? = null,
         var portions: Int? = null,
         var time: Int? = null
-    ): Serializable
+    ) : Serializable
     class StateHolder : Serializable {
         var selectedMealTimeChipId: Int? = null
         var selectedDishesChipId: Int? = null

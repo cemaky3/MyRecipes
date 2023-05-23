@@ -6,8 +6,10 @@ enum class Dishes {
     Starter,
     Soup,
     Salad,
+
     @SerializedName("firstdish")
     FirstDish,
+
     @SerializedName("maindish")
     MainDish,
     Snack,
